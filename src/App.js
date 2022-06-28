@@ -1,23 +1,32 @@
 import logo from './logo.svg';
-import './App.css';
+import contact from './data/contact.json'
 
-function App() {
+import ButtonClass from './components/ButtonClass';
+import ButtonFunction from './components/ButtonFunction';
+
+const App = () => {
+   const favoriteFood = ["nasgor", "nasi kuning", "nasi uduk"];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Makanan Favorit</h1>
+      <ul>
+        {
+          /* favoriteFood.map((makanan) => {
+            return <li key={makanan}>{makanan} <ButtonFunction text="Add to cart" id={makanan} color="orange" /></li>
+          }) */
+          contact.map((item) => {
+            return <li key={item.phone}>{`${item.name} - ${item.phone}`} <ButtonFunction text="Add to cart" id={`btn-${item.phone}`} color="orange" /></li> 
+          })
+        }
+      </ul>
+      <div style={{ margin:"20px"}}>
+        <ButtonClass text="I'm button class from props!" id="btn-1" color="red" />  
+        <ButtonFunction text="I'm button function from props!" id="btn-1" color="blue" /> 
+        <br />
+        <ButtonFunction />
+        <ButtonClass />
+      </div>
+       
     </div>
   );
 }
